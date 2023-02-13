@@ -1,0 +1,145 @@
+El HEAD hace referencia al ultimo commit hecho.
+
+git --version -- significa que me de una palabra completa
+- significa que son abreviaturas
+
+git config --global -e : Ver las configuraciones globales del usuario.
+Para salir: presionar una vez la tecla ESC, depues escribir los 2 puntos ":" y escribir: "wq!"
+
+git status: Imprime el status del repositorio en ese momento.
+
+git init:Crea la carpeta .git que es para que le del seguimiento al repositorio.
+
+git add: Toma captura de los archivos del repositorio.
+
+git add .:Añade todos los archivos del repositorio.
+git reset <nombreArchivo> : Quita al archivo de la lista de los commit.
+
+git commit -m: Hace los commits añadidos junto con un mensaje personalizado.
+
+git checkout -- . : Restaura todo el reprositorio hasta el ultimo commit realizado.
+
+git branch: Especifica el nombre de la rama en la que estamos.
+
+git branch -m master main: cambia el nombre de la rama de master por main
+
+git config --global init.DefaultBranch main: Cada vez que se inicialice un repositorio la rama principal sera main
+
+git commit -am "<comentario>": A los archivos que tengan el seguimiento de git... Realiza el añadido y el commit en una sola linea de comando.
+
+git add *.html: Añadir todos los archivos con la extension .html dentro de la raiz de la carpeta.
+
+git add <directorio>/*.js : Anañir todos los archivos .js dentro del directorio especificado.
+
+.gitkeep : El archivo .gitkeep es para crear carpetas vacias y sean seguidas por git, sin importar que esten vacias.
+
+git config --global alias.s "status --short" : Crea un nuevo alias a partir de la letra "s" en donde lo resume por "status --short"
+
+Con el comando "git config --global -e" tambien se pueden modificar los alias.
+
+Con este alias los log pueden ser mas faciles de leer: git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+git diff: muestra los cambios que se han hecho en los archivos no añadidos al staged.
+
+git diff --staged: muestra los cambios que ha tenido el archivo pero se enfoca en los que estan en el staged o en los que fueron añadidos.
+
+git commit --amend -m "<nuevoComentario>": Modifica el ultimo comentario del commit.
+
+git reset --soft HEAD^: Elimina el ultimo commit para hacer uno nuevo con las modificaciones ya hechas... (Despues se tiene que añadir al staged y commitear de nuevo para ver cambios en el log.)
+
+git commit --amend: Entra al editor de la consola para modificar el log. (wq! para salir del editor).
+
+git reset --mixed <hash>:
+
+git reset --hard <hash>: Deja todo el repositorio en el punto que le especificamos con el hash. Incluso si ya se habia eliminado los archivos.
+
+git reflog: Es una referencia de todo lo que ah sucedido en orden cronologico.
+
+Por buenas practicas. Es recomendable que la rama master o main solo tengan los commits definitivos a implementar y es mejor crear una rama para trabajar en ella y no volver en el tiempo en la rama principal master o main.
+
+git mv <nombreArchivo> <nuevoNombreArchivo>: Renombra el nombre del archivo por el especificado... moviendolo al mismo directorio.
+
+git rm <nombreArchivo> : Elimina el archivo o directorio especificado pero no lo elimina del staged. (Se puede hacer un commit luego de eliminarlo para que quede en el registro de git.)
+
+Para que git no le de seguimiento a algunos archivos o directorios... Se tiene que crear un archivo llamado ".gitignore" en la raiz del repositorio en donde especifiquemos los archivos y directorios que no queremos que se haga el segumiento. Todo se escribe dentro del archivo .gitignore
+
+git branch <nombreRama>: crea una nueva rama en el repositorio.
+
+git checkout <nombreRama> : Nos movemos entre ramas.
+
+Para hacer el merge entre ramas es necesario estar en la rama donde se requiere traer los datos.
+
+git merge <nombreRama>: Especifica que quiere traer los commits a la rama en donde se encuentra en ese momento.
+
+git branch -d <nombreRama> : Borra una rama.
+
+git branch -d <nombreRama> -f : Fuerza el metodo para borrar una rama.
+
+git checkout -b <nombreRama> : Crea la rama y te posiciona en ella a la vez.
+
+Para resolver conflictos que presente git... se acepta alguno de los 2 o directamente se crea uno nuevo con modificaciones de los 2. Se debe hacer un commit para guardar los cambios y resolver el conflicto.
+
+Tags o etiquetas son una referencia a un commit especifico. Y sirven para hacer el versionado de nuestra aplicacion.
+Ejemp: aplicacion1.2.exe, aplicacion1.3.exe ... etc.
+
+git tag <nombreTag>: Crea una etiqueta en el ultimo commit.
+
+git tag: para ver los tags creados disponibles.
+
+git tag -d <nombreTagAEliminar> : Elimina la etiqueta
+
+git tag -a <nombreTag> -m "<Comentario>": Crea el tag exactamente en donde estamos.
+
+git tag -a <nombreTag> <hash> -m "<Comentario>": Crea un tag nuevo al hash que indiquemos.
+
+git show <nombreTag> : Muestra el tag que indiquemos junto con la informacion correspondiente de este.
+
+El stash sirve para almacenar los cambios que estamos haciendo. Esto sirve por si se requiere publicar o se requiere la aplicacion como estaba en el ultimo commit y nosotros estamos trabajando en esa rama pero todavia no acabamos los cambios que hacemos. Por eso los guardamos con un stash.
+
+git stash: Guardamos los cambios del repositorio incluso de los archivos que no se les esta haciendo el seguimiento. Deja los archivos al ultimo commit realizado y guarda los cambios hechos.
+
+git stash pop: se restauran los cambios hechos o alamacenados en el stash y borra ese mismo stash
+
+git stash clear: Se eliminan todos los stash temporales hechos hasta el momento. (Con git reflog se podria regresar al hash en donde todavia no se borra el stash).
+
+git stash list: Muestra los stash creados hasta el momento.
+
+git stash apply <numeroStash>: Te restaura los cambios al stash especificado por el numero del git stash list.
+
+git stash grop <numeroStash>: Elimina el stash especificado por el numero del git stash list.
+
+git stash show <numeroStash>: Muestra que archivos se modificaron hasta el momento que se realizo el stash.
+
+git stash save "<comentarios>" : Crea un nuevo stash fijando un comentario para visualizarlo en la lista. Esto para saber que cambios se hicieron y a que archivos.
+
+git stash list --stat: muestra mas informacion sobre los stash
+
+rebase normal: Si estamos trabajando en una rama, esa rama tiene el ultimo commit de la rama master. Entonces si por alguna razon alguien hace commits en la rama master nosostros ya no tendriamos los ultimos cambios si es que los requerimos.
+Entonces para actualizar nuestra rama con los ultimos cambios... nos posicionamos en esa rama y ponemos el comando para traer los ultimos cambios a nuestra rama en la que estamos trabajando.
+
+rebase interactivo: Para acomodar mejor los commits, como separlos, poner muchos commit en uno... y este mejor nuestra linea de versiones.
+
+git rebase <nombreRama> : Actualiza los cambios de la rama especificada con la que se esta posicionado en ese momento.
+
+HEAD~4: Hace referencia a los ultimos 4.
+
+git rebase -i HEAD~4: La bandera o el atributo -i hace referencia que el rebase sea interactivo. asi que con el head especificamos que sea al ultimo commit hecho. Despues presionamos la tecla A para editar el documento y especificamos en donde esta el hash poner s de squash para que se fucione con el commmit anterior al que se pone la s. 
+Despues se especifica el comentario que se desea conservar o realizar uno nuevo.
+
+Para modificar los comentarios de los commits se hace git rebase -i HEAD~4 para entrar al modo de edicion y especificar la letra "r" en el hash del commit que se desea modificar.
+
+git checkout -- <nombreArchivo> : Si tenemos muchos cambios hechos en el repositorio pero queremos volver a su estado actual solo un archivo especificado... Entonces se hace un rollback con git checkout -- y el nombre del archivo.
+
+Por si alguna razon subimos un commit con muchos cambios pero no lo queriamos asi y queremos que algunos commits esten separados...
+Lo que se hace es entrar al git rebase interactivo de nuevo con git rebase -i HEAD~4 especificando los commits que se desean mostrar y seguido de esto se edita el documento especificando con la letra e en el commit que se desea editar. despues nos salimos y guardamos y empezamos a agregar al staged los archivos que queremos con un commit y determinado comentario asi con todos. Por ultimo hacemos un git status para ver el estado en que estamos y utilizamos el comando git rebase --continue para hacer los cambios.
+
+git push -u origin main: Especifica el repositorio remoto por defecto.
+
+git remote add origin <URLREPO>: 
+git branch -M main: cambia la rama a main
+
+git push: Subir al repositorio remoto
+git pull: descargar cambios del repositorio remoto.
+git push --tags: sube los tags al repositorio remoto.
+
+Seccion 6 51. //////////
