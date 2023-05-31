@@ -1,1 +1,1 @@
-^window\.(?!\$)(?:GlideSignals\.(?:init|trackEvent)|open|navigator\.geolocation\.getCurrentPosition|GlideWebAnalytics\.trackEvent|postMessage|addEventListener|removeEventListener)$
+/^window\.(?!\$)(?:GlideSignals\.(?:init|trackEvent)|open|navigator\.geolocation\.getCurrentPosition|GlideWebAnalytics\.trackEvent|postMessage|addEventListener|removeEventListener)$/
